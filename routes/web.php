@@ -20,6 +20,8 @@ use App\Http\Controllers\eventsController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+
 Route::get('/', [eventsController::class, 'getDataEvent'])->name('EventRegister');
 Route::get('EventData/{id}', [eventsController::class, 'EventData'])->name('EventData');
 Route::POST('CreateAttendee', [eventsController::class, 'CreateAttendee'])->name('CreateAttendee');
@@ -41,7 +43,7 @@ Route::group(['middleware'=> ['role:admin']], function(){
     Route::post('admin/UpdateEventManger', [eventManagerController::class, 'UpdateEventManger'])->name('admin.UpdateEventManger');
     Route::get('admin/DeleteEventManger/{id}', [eventManagerController::class, 'DeleteEventManger'])->name('admin.DeleteEventManger');
 
-    Route::get('admin/ListEvent', [eventsController::class, 'ListEvent'])->name('admin.ListEvent');
+    Route::get('admin/ListEvent/{lang?}', [eventsController::class, 'ListEvent'])->name('admin.ListEvent');
     Route::post('admin/addEvent', [eventsController::class, 'CreateEvent'])->name('admin.CreateEvent');
     Route::get('admin/EditEvent/{id}', [eventsController::class, 'EditEvent'])->name('admin.EditEvent');
     Route::post('admin/UpdateEvent', [eventsController::class, 'UpdateEvent'])->name('admin.UpdateEvent');

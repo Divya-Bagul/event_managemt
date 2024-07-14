@@ -8,11 +8,15 @@ use App\Models\Event;
 use App\Models\Attendee;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use Illuminate\Support\Facades\App;
+
 class eventsController extends Controller
 {
     //
 
     public function ListEvent(){
+        
+        
         $user = Auth::user();
         if(!$user->hasRole('admin')){
             $eventList = Event::where('event_manager_id','=', $user->id)->get();
@@ -165,7 +169,20 @@ class eventsController extends Controller
        
     }
 
-    public function getDataEvent() {
+    public function getDataEvent($lang = NULL) {
+
+       
+        if ($lang != NULL){
+          
+            app()->setLocale($lang);
+      
+      //Gets the translated message and displays it
+    
+            
+        }else{
+            App::setLocale('en');
+        }
+      
         $eventList = Event::all();
         return view('welcome',compact('eventList'));
     }

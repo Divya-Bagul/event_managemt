@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container">
+
+    <h1>{{ __('messages.welcome') }}</h1>
+    <p>{{ __('messages.goodbye') }}</p>
     <div class="row justify-content-center">
         <div class="col-md-12 d-flex justify-content-between ">
             

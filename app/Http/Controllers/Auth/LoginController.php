@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Events\UserLogin;
 class LoginController extends Controller
 {
     /*
@@ -30,11 +31,16 @@ class LoginController extends Controller
     // protected $redirectTo = '/home';
     protected function redirectTo(){
         $user = Auth::user();
+         event(new UserLogin($user));
+         app()->setLocale($user->lang);
+         // app()->setLocale($lang);
+         session(['locale' => $user->lang]);
         if($user->hasRole('admin')){
             return '/admin';
         }else{
             return '/manager';
         }
+       
     }
     /**
      * Create a new controller instance.

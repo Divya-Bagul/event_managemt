@@ -21,10 +21,11 @@
             
         </div>
     </div>
-
+    <h1>{{ __('messages.welcome') }}</h1>
+            <p>{{ __('messages.goodbye') }}</p>
     <div class=" conatiner my-4">
         <div class="row justify-content-center">
-           
+            
             <div class="col-md-3">
                 <a href="/ListEvent" class="btn btn-danger"> Add Events</a>
             </div>

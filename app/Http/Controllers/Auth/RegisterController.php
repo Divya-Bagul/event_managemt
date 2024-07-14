@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
+use App\Events\UserRegistered;
 
 class RegisterController extends Controller
 {
@@ -71,6 +72,7 @@ class RegisterController extends Controller
         ]);
         // $user->assignRole("admin");
         $user->assignRole("event manager");
+        event(new UserRegistered($user));
 
         return $user;
 

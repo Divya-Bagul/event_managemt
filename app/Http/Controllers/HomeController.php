@@ -33,7 +33,8 @@ class HomeController extends Controller
             if($user->hasRole('admin')){
                 return '/admin';
             }else{
-                return '/manager';
+                // return '/manager';
+                return view('home');
             } 
             // return view('home');
     }
